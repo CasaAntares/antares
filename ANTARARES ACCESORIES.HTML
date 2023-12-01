@@ -1,0 +1,741 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANTARES</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #9B9B9B;
+            color: white;
+        }
+
+        header {
+            background-color: #000;
+            padding: px 0;
+            text-align: center;
+            width: 100%;
+            height: 75px;
+            margin: auto;
+        }
+
+        h1 {
+            letter-spacing: 10px;
+            margin: 0;
+            font-size: 40px;
+            line-height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+            position: relative;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 13px;
+            line-height: 55px;
+        }
+        .submenu {
+            display: none;
+            position: fixed;
+            background-color: #000;
+            z-index: 1;
+            top: 75px;
+            left: 0;
+            width: 100%;
+            height: 8vh; 
+            padding: 0px;
+        }
+
+        .submenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .submenu ul li {
+            margin: 0 10px;
+        }
+
+        .submenu ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li:hover .submenu {
+            display: block;
+        }
+    .productos {
+        display: flex;
+        overflow-x: auto; 
+        width: 100%;
+        cursor: grab; 
+        user-select: none; 
+        scroll-behavior: smooth; 
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #000000; 
+        padding-bottom: 10px; 
+        margin-bottom: 1px; 
+    }
+
+    .productos li {
+        flex: 0 0 auto; 
+        margin-right: 20px; 
+        max-width: 300px; 
+    }
+    .productos::-webkit-scrollbar {
+        display: none; 
+    }
+    .productos {
+        scrollbar-width: none; 
+    }
+    body {
+        overflow-x: hidden;
+    }
+.carrito-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #000000;
+    box-shadow: 0 0px 100px rgba(200, 100, 500, 100);
+}
+
+#productosCarrito {
+    margin-bottom: 10px;
+}
+
+#totalesCarrito {
+    font-weight: bold;
+}
+#productosCarrito div {
+    border-bottom: 1px solid white;
+    padding-bottom: 1px;
+}
+#totalesCarrito {
+    display: flex;
+    justify-content: space-between;
+}
+.producto-carrito span {
+    display: flex;
+    justify-content: space-between;
+}
+.cantidad {
+  margin: 1px;
+}
+
+.nombre {
+  text-align: center; /* Alinea el texto al centro */
+}
+
+.precio {
+  width: 30%; /* Ajusta el ancho según sea necesario */
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+ #realizarPedido {
+            display: flex;
+            justify-content: center;
+            margin-top: 1px; 
+        }
+ #btnRealizarPedido {    
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ANTARES</h1>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li>
+                <a href="#accesorios" onmouseenter="showSubmenu()">Accesorios</a>
+                <ul class="submenu" onmouseleave="hideSubmenu()" onclick="hideSubmenu()">
+                    <ul>
+                        <li><a href="#cadenas">Cadenas</a></li>
+                        <li><a href="#pulseras">Pulseras</a></li>
+                        <li><a href="#broches">Broches</a></li>
+                        <li><a href="#charms">Charms</a></li>
+                        <li><a href="#cordones">Cordones</a></li>
+                        <li><a href="#llaveros">Llaveros</a></li>
+                    </ul>
+                </ul>
+            </li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="inicio">
+        <p>¡Encuentra los mejores productos aquí!</p>
+    </section>
+   <section id="cadenas">
+        <h2>Cadenas</h2>
+        <!-- Productos Cadenas -->
+        <ul class="productos">
+            <!-- Producto 1 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 1 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 1</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="1" data-nombre="Producto 1" data-precio="10" onclick="agregarAlCarrito(1, 'Producto 1', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 2 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 2 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 2</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="2" data-nombre="Producto 2" data-precio="10" onclick="agregarAlCarrito(2, 'Producto 2', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 3 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 3 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 3</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="3" data-nombre="Producto 3" data-precio="10" onclick="agregarAlCarrito(3, 'Producto 3', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 4 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 4 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 4</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="4" data-nombre="Producto 4" data-precio="10" onclick="agregarAlCarrito(4, 'Producto 4', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 5 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 5 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 5</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="5" data-nombre="Producto 5" data-precio="10" onclick="agregarAlCarrito(5, 'Producto 5', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 6 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 6 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 6</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="6" data-nombre="Producto 6" data-precio="10" onclick="agregarAlCarrito(6, 'Producto 6', 10)">Agregar al carrito</button>
+    </div>
+</li>
+        </ul>
+    </section>
+
+   <section id="pulseras">
+        <h2>Pulseras</h2>
+        <!-- Productos Pulseras -->
+        <ul class="productos">
+            <!-- Producto 7 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 7 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 7</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="7" data-nombre="Producto 7" data-precio="10" onclick="agregarAlCarrito(7, 'Producto 7', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 8 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 8 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 8</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="8" data-nombre="Producto 8" data-precio="10" onclick="agregarAlCarrito(8, 'Producto 8', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 9 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 9 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 9</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="9" data-nombre="Producto 9" data-precio="10" onclick="agregarAlCarrito(9, 'Producto 9', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 10 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 10 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 10</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+       <button class="boton boton-agregar" data-id="10" data-nombre="Producto 10" data-precio="10" onclick="agregarAlCarrito(10, 'Producto 10', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 11 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 11 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 11</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+       <button class="boton boton-agregar" data-id="11" data-nombre="Producto 11" data-precio="10" onclick="agregarAlCarrito(11, 'Producto 11', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 12 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 12 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 12</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+      <button class="boton boton-agregar" data-id="12" data-nombre="Producto 12" data-precio="10" onclick="agregarAlCarrito(12, 'Producto 12', 10)">Agregar al carrito</button>
+    </div>
+</li>
+        </ul>
+    </section>
+
+    <section id="broches">
+        <h2>Broches</h2>
+        <!-- Productos broches -->
+        <ul class="productos">
+            <!-- Producto 13 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 13 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 13</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+       <!-- Ejemplo para un producto (cambiar para cada producto) -->
+<button class="boton boton-agregar" data-id="13" data-nombre="Producto 13" data-precio="10" onclick="agregarAlCarrito(13, 'Producto 13', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 14 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 14 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 14</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="14" data-nombre="Producto 14" data-precio="10" onclick="agregarAlCarrito(14, 'Producto 14', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 15 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 15 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 15</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="15" data-nombre="Producto 15" data-precio="10" onclick="agregarAlCarrito(15, 'Producto 15', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 16 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 16 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 16</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="16" data-nombre="Producto 16" data-precio="10" onclick="agregarAlCarrito(16, 'Producto 16', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 17 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 17 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 17</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="17" data-nombre="Producto 17" data-precio="10" onclick="agregarAlCarrito(17, 'Producto 17', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 18 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 18 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 18</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="18" data-nombre="Producto 18" data-precio="10" onclick="agregarAlCarrito(18, 'Producto 18', 10)">Agregar al carrito</button>
+    </div>
+</li>
+        </ul>
+    </section>
+
+    <section id="charms">
+        <h2>Charms</h2>
+        <!-- Productos Charms -->
+        <ul class="productos">
+            <!-- Producto 19 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 19 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 19</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="19" data-nombre="Producto 19" data-precio="10" onclick="agregarAlCarrito(19, 'Producto 19', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 20 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 20 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 20</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+       <button class="boton boton-agregar" data-id="20" data-nombre="Producto 20" data-precio="10" onclick="agregarAlCarrito(20, 'Producto 20', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 21 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 21 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 21</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="21" data-nombre="Producto 21" data-precio="10" onclick="agregarAlCarrito(21, 'Producto 21', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 22 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 22 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 22</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="22" data-nombre="Producto 22" data-precio="10" onclick="agregarAlCarrito(22, 'Producto 22', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 23 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 23 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 23</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="23" data-nombre="Producto 23" data-precio="10" onclick="agregarAlCarrito(23, 'Producto 23', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 24 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 24 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 24</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="24" data-nombre="Producto 24" data-precio="10" onclick="agregarAlCarrito(24, 'Producto 24', 10)">Agregar al carrito</button>
+    </div>
+</li>
+        </ul>
+    </section>
+
+    <section id="cordones">
+        <h2>Cordones</h2>
+        <!-- Productos Cordones -->
+        <ul class="productos">
+            <!-- Producto 25 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 25 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 25</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="25" data-nombre="Producto 25" data-precio="10" onclick="agregarAlCarrito(25, 'Producto 25', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 26 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 26 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 26</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="26" data-nombre="Producto 26" data-precio="10" onclick="agregarAlCarrito(26, 'Producto 26', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 27 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 27 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 27</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+       <button class="boton boton-agregar" data-id="27" data-nombre="Producto 27" data-precio="10" onclick="agregarAlCarrito(27, 'Producto 27', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 28 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 28 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 28</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="28" data-nombre="Producto 28" data-precio="10" onclick="agregarAlCarrito(28, 'Producto 28', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 29 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 29 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 29</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="29" data-nombre="Producto 29" data-precio="10" onclick="agregarAlCarrito(29, 'Producto 29', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 30 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 30 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 30</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="30" data-nombre="Producto 30" data-precio="10" onclick="agregarAlCarrito(30, 'Producto 30', 10)">Agregar al carrito</button>
+    </div>
+</li>
+        </ul>
+    </section>
+
+    <section id="llaveros">
+        <h2>Llaveros</h2>
+        <!-- Productos Llaveros -->
+        <ul class="productos">
+            <!-- Producto 31 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 31 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 31</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="31" data-nombre="Producto 31" data-precio="10" onclick="agregarAlCarrito(31, 'Producto 31', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 32 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 32 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 32</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="32" data-nombre="Producto 32" data-precio="10" onclick="agregarAlCarrito(32, 'Producto 32', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 33 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 33 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 33</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="33" data-nombre="Producto 33" data-precio="10" onclick="agregarAlCarrito(33, 'Producto 33', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 34 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 34 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 34</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="34" data-nombre="Producto 34" data-precio="10" onclick="agregarAlCarrito(34, 'Producto 34', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 35 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 35 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 35</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+        <button class="boton boton-agregar" data-id="35" data-nombre="Producto 35" data-precio="10" onclick="agregarAlCarrito(35, 'Producto 35', 10)">Agregar al carrito</button>
+    </div>
+</li>
+            <!-- Producto 36 -->
+            <li>
+    <img src="ruta/a/la/imagen_producto_1_cadenas.jpg" alt="Producto 36 - Cadenas">
+    <div class="producto-descripcion">Descripción del producto 36</div>
+    <div class="producto-precio">Precio: $10</div>
+    <div class="botones">
+       <button class="boton boton-agregar" data-id="36" data-nombre="Producto 36" data-precio="10" onclick="agregarAlCarrito(36, 'Producto 36', 10)">Agregar al carrito</button>
+    </div>
+</li>
+        </ul>
+    </section>
+
+    <section id="carrito">
+    <h2>Carrito</h2>
+    <div id="infoCarrito" class="carrito-container">
+    <div id="productosCarrito"></div>
+    <div id="totalesCarrito">
+        <p id="cantidadTotal">Total de productos: 0</p>
+        <p id="precioTotal">Precio Total: $0</p>
+    </div>
+  <div id="realizarPedido">
+        <button id="btnRealizarPedido" onclick="realizarPedido()">Realizar Pedido</button>
+    </div>
+</section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Ponte en contacto con nosotros</p>
+        <p>Envíanos un mensaje por WhatsApp</p>
+        <a href="https://wa.me/593980111570?text=Hola,%20me%20gustaría%20contactar%20con%20tu%20empresa" target="_blank">Enviar mensaje por WhatsApp</a>
+    </section>
+</main>
+
+<footer>
+    <p>Derechos de autor © 2023. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    
+function showSubmenu() {
+    const submenu = document.querySelector('.submenu');
+    submenu.style.display = 'block';
+}
+
+function hideSubmenu() {
+    const submenu = document.querySelector('.submenu');
+    submenu.style.display = 'none';
+}
+
+window.addEventListener('scroll', function() {
+    const submenu = document.querySelector('.submenu');
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(function() {
+        submenu.style.display = 'none';
+    }, 100);
+});
+
+let carrito = [];
+
+function agregarAlCarrito(id, nombre, precio) {
+    const productoEnCarrito = carrito.find(item => item.id === id);
+
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+    } else {
+        carrito.push({
+            id,
+            nombre,
+            precio,
+            cantidad: 1
+        });
+    }
+
+    actualizarCarrito();
+}
+function actualizarCarrito() {
+            const listaProductos = document.getElementById('productosCarrito');
+            listaProductos.innerHTML = '';
+
+            let totalProductos = 0;
+            let precioTotal = 0;
+
+    carrito.forEach(producto => {
+        const { cantidad, nombre, precio } = producto;
+        const productoHTML = `
+            <div>
+                <button onclick="restarCantidad(${producto.id})">-</button>
+                <span class="cantidad">x${cantidad}</span>
+                <button onclick="sumarCantidad(${producto.id})">+</button>
+                <span class="nombre">│${nombre}│</span>
+                <span class="precio">$${precio * cantidad}</span>
+            </div>`;
+        listaProductos.innerHTML += productoHTML;
+
+        totalProductos += cantidad;
+        precioTotal += precio * cantidad;
+    });
+
+    document.getElementById('cantidadTotal').textContent = `Total de productos: ${totalProductos}`;
+    document.getElementById('precioTotal').textContent = `Precio Total: $${precioTotal}`;
+}
+function restarCantidad(id) {
+    const producto = carrito.find(item => item.id === id);
+
+    if (producto) {
+        if (producto.cantidad > 1) {
+            producto.cantidad--;
+        } else {
+            carrito = carrito.filter(item => item.id !== id);
+        }
+        actualizarCarrito();
+    }
+}
+function sumarCantidad(id) {
+    const producto = carrito.find(item => item.id === id);
+
+    if (producto) {
+        producto.cantidad++;
+        actualizarCarrito();
+    }
+}
+function realizarPedido() {
+    carrito = [];
+    actualizarCarrito();
+}
+elementos .productos
+    function habilitarDesplazamientoHorizontal() {
+        const elementosProductos = document.querySelectorAll('.productos');
+
+        elementosProductos.forEach(elemento => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            elemento.addEventListener('mousedown', e => {
+                isDown = true;
+                startX = e.pageX - elemento.offsetLeft;
+                scrollLeft = elemento.scrollLeft;
+            });
+
+            elemento.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            elemento.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            elemento.addEventListener('mousemove', e => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - elemento.offsetLeft;
+                const walk = (x - startX) * 2;
+                elemento.scrollLeft = scrollLeft - walk;
+            });
+        });
+    }
+function realizarPedido() {
+    // Generar el mensaje con la información del carrito
+    let mensaje = '¡Hola! Quiero realizar un pedido:\n';
+
+    carrito.forEach(producto => {
+        mensaje += `Producto: ${producto.nombre}, Cantidad: ${producto.cantidad}, Precio: $${producto.precio * producto.cantidad}\n`;
+    });
+
+    let numeroWhatsApp = '593980111570';
+    
+    let enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(enlaceWhatsApp, '_blank');
+}
+function sumarCantidad(id) {
+    const productoEnCarrito = carrito.find(item => item.id === id);
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+        actualizarCarrito();
+    }
+}
+function restarCantidad(id) {
+    const productoEnCarrito = carrito.find(item => item.id === id);
+    if (productoEnCarrito && productoEnCarrito.cantidad > 1) {
+        productoEnCarrito.cantidad--;
+        actualizarCarrito();
+    } else if (productoEnCarrito && productoEnCarrito.cantidad === 1) {
+        carrito = carrito.filter(item => item.id !== id);
+        actualizarCarrito();
+    }
+}
+</script>
+</body>
+</html>
